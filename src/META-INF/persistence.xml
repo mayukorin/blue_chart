@@ -5,6 +5,7 @@
 		<class>models.Person</class>
 		<class>models.Area</class>
 		<class>models.Problem</class>
+		<class>models.Solve2</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/blue_chart?useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8"/>
