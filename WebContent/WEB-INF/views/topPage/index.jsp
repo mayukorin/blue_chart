@@ -9,5 +9,6 @@
             </div>
         </c:if>
         <h2>青チャート管理システムへようこそ</h2>
+        <p><a href="<c:url value='/persons/edit'/>">会員情報を編集する</a></p>
     </c:param>
 </c:import>
