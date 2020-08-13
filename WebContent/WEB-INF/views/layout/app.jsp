@@ -14,6 +14,12 @@
                 <div id="header_menu">
                     <h1><a href="<c:url value='/'/>">青チャート管理システム</a></h1>
                 </div>
+                <c:if test="${sessionScope.login_person !=null}">
+                    <div id="person_name">
+                        <c:out value="${sessionScope.login_person.name}"/>&nbsp;さん&nbsp;&nbsp;
+                        <a href="<c:url value='/logout'/>">ログアウト</a>
+                    </div>
+                </c:if>
             </div>
             <div id="content">
                 ${param.content}
