@@ -3,6 +3,7 @@
 	<persistence-unit name="blue_chart" transaction-type="RESOURCE_LOCAL">
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 		<class>models.Person</class>
+		<class>models.Area</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
 			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/blue_chart?useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8"/>
