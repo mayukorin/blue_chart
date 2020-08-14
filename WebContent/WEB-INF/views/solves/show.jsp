@@ -40,6 +40,6 @@
     </c:choose>
     <p><a href="<c:url value="/problems/index"/>">問題一覧へ戻る</a></p>
     <p><a href="<c:url value="/problems/show"/>">問題詳細へ戻る</a></p>
-    <p><a href="<c:url value="/solves/edit?solve=${solve.id}"/>">解き方を編集する</a></p>
+    <p><a href="<c:url value="/solves/edit?solve=${solve.id}"/>">解答情報を編集する</a></p>
 </c:param>
 </c:import>
