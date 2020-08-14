@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @NamedQueries({
     @NamedQuery(
             name = "getProblemsinArea",
-            query = "select p from Problem as p where p.area = :area"),
+            query = "select p from Problem as p where p.area = :area order by p.id"),
     @NamedQuery(
             name = "getAllProblems",
             query = "select p from Problem as p")
