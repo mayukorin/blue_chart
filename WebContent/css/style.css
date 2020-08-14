@@ -129,3 +129,21 @@ tr.row1 {
 tr.row0 {
         background-color: #BAD3FF;
 }
+
+tr.red{
+    background-color: #FFD5EC;
+
+}
+
+tr.blue {
+    background-color: #D9E5FF;
+}
+
+td.blue {
+        background-color: #D9E5FF;
+}
+
+td.red{
+    background-color: #FFD5EC;
+
+}
