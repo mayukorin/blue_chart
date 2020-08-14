@@ -40,6 +40,7 @@ public class ProblemShowServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
         Problem p;
+        Integer max_time = 0;
 
 
         EntityManager em = DBUtil.createEntityManager();
@@ -75,11 +76,22 @@ public class ProblemShowServlet extends HttpServlet {
 
         Iterator<Solve2> it = solves.iterator();
         while (it.hasNext()) {
-            Solve2 s = it.next();
 
-            tt.add((s.getTargettime().getHour()*1440+s.getTargettime().getMinute()*60+s.getTargettime().getSecond()));
-            ts.add(s.getSolvetime().getHour()*1440+s.getSolvetime().getMinute()*60+s.getSolvetime().getSecond());
-            day.add(s.getDay());
+            Solve2 s = it.next();
+            if (s.getSolvetime() != null) {
+                Integer t_time = s.getTargettime().getHour()*1440+s.getTargettime().getMinute()*60+s.getTargettime().getSecond();
+                Integer s_time = s.getSolvetime().getHour()*1440+s.getSolvetime().getMinute()*60+s.getSolvetime().getSecond();
+
+                tt.add(t_time);
+                ts.add(s_time);
+                day.add(s.getDay());
+
+                if (t_time > max_time) {
+                    max_time = t_time;
+                } else if (s_time > max_time) {
+                    max_time = s_time;
+                }
+            }
 
         }
 
@@ -91,6 +103,7 @@ public class ProblemShowServlet extends HttpServlet {
         request.setAttribute("tt", tt);
         request.setAttribute("ts", ts);
         request.setAttribute("day", day);
+        request.setAttribute("max_time", max_time);
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/problems/show.jsp");
         rd.forward(request, response);

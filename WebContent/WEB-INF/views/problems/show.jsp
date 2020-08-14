@@ -110,8 +110,10 @@
         <script>grray.push(sw);</script>
 
         <%} %>
+        <% Integer max = (Integer)request.getAttribute("max_time"); %>
+        <script> var max_time = '<%=max%>';</script>
 
-        <h2>時間グラフ</h2>
+        <h2>目標時間・解答時間の比較</h2>
         <canvas id="myBarChart"></canvas>
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
@@ -142,13 +144,14 @@
             options: {
                 title: {
                   display: true,
-                  text: '日付'
+                  text: '解答した日付'
 
                 },
                 scales: {
                     yAxes: [{
                         ticks: {
                           suggestedMin: 0,
+                          suggestedMax: max_time*1.1,
                           callback:function(value) {
                               return Math.floor(value/1440)+":"+Math.floor((value%1440)/60)+":"+(value%1440)%60;
                           }
