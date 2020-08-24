@@ -28,7 +28,7 @@ public class SolveValidator {
 
     private static String _validateDate(String date) {
         if (date == null || date.equals("")) {
-            return "解いた日付を入力してください";
+            return "解いた（解く予定の）日付を入力してください";
 
         }
         return "";

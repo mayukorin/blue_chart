@@ -4,7 +4,7 @@
     <c:param name ="content">
     <c:choose>
         <c:when test="${solve != null}">
-        <h2>解き方 詳細ページ</h2>
+        <h2>解答情報 詳細ページ</h2>
 
         <table>
             <tbody>

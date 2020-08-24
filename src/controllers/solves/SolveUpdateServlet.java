@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -55,18 +56,18 @@ public class SolveUpdateServlet extends HttpServlet {
             Problem pp = (Problem) request.getSession().getAttribute("problem");
             s2.setProblem(pp);
 
-            if (!request.getParameter("targettime").equals("")) {
+            try {
                 tt = LocalTime.parse(request.getParameter("targettime"),DateTimeFormatter.ofPattern("HH:mm:ss"));
                 s2.setTargettime(tt);
-            } else {
-                s2.setTargettime(null);
-            }
+            } catch (DateTimeParseException e) {
+                //目標解答時間について、特に変更なしの時
+             }
 
-            if (!request.getParameter("solvetime").equals("")) {
+            try {
                 st = LocalTime.parse(request.getParameter("solvetime"),DateTimeFormatter.ofPattern("HH:mm:ss"));
                 s2.setSolvetime(st);
-            } else {
-                s2.setSolvetime(null);
+            } catch (DateTimeParseException e) {
+               //解答時間について、特に変更なしの時
             }
 
             s2.setDay(request.getParameter("day"));
