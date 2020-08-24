@@ -9,7 +9,7 @@
     <c:param name="content">
         <c:choose>
             <c:when test="${problem != null}">
-                <h2>問題 詳細ページ</h2>
+                <h2>${problem.name}詳細ページ</h2>
 
                 <table>
                     <tbody>
@@ -74,7 +74,8 @@
             </c:otherwise>
         </c:choose>
         <p>
-            <a href="<c:url value="/problems/index"/>">一覧に戻る</a>
+            <a href="<c:url value="/problems/index"/>">問題一覧に戻る</a>
+
         </p>
 
         <script>var array =[];</script>

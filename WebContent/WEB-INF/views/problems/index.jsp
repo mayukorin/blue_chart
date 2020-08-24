@@ -40,7 +40,7 @@
                 </c:forEach>
             </tbody>
         </table>
-        <p><a href="<c:url value="/areas/index"/>">範囲一覧に戻る</a>
+        <p><a href="<c:url value="/areas/index"/>">分野一覧に戻る</a>
 
     </c:param>
 

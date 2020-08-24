@@ -17,6 +17,6 @@
             </c:otherwise>
         </c:choose>
 
-        <p><a href="<c:url value='/login' />">一覧に戻る</a></p>
+        <p><a href="<c:url value='/login' />">ホーム画面に戻る</a></p>
     </c:param>
 </c:import>

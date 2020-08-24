@@ -43,6 +43,7 @@ public class ProblemShowServlet extends HttpServlet {
         Integer max_time = 0;
 
 
+
         EntityManager em = DBUtil.createEntityManager();
 
         Person pp = ((Person)request.getSession().getAttribute("login_person"));
@@ -64,6 +65,8 @@ public class ProblemShowServlet extends HttpServlet {
             //トップページから問題詳細画面へ遷移した場合
 
             request.getSession().setAttribute("areaa",p.getArea());
+
+
         }
         List<Solve2> solves = em.createNamedQuery("solveproblem",Solve2.class).setParameter("problem", p).setParameter("person", pp).getResultList();//その問題を、ログインした人が解いた情報
 
@@ -104,6 +107,7 @@ public class ProblemShowServlet extends HttpServlet {
         request.setAttribute("ts", ts);
         request.setAttribute("day", day);
         request.setAttribute("max_time", max_time);
+
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/problems/show.jsp");
         rd.forward(request, response);

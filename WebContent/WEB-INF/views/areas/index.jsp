@@ -11,7 +11,7 @@
         <table id="area_list">
             <tbody>
                 <tr>
-                    <th>範囲名</th>
+                    <th>分野名</th>
                     <th>操作</th>
                 </tr>
                 <c:forEach var="area" items="${areas}" varStatus="status">
@@ -36,6 +36,7 @@
                 </c:choose>
             </c:forEach>
         </div>
+        <p><a href="<c:url value='/index.html'/>">ホーム画面に戻る</a>
     </c:param>
 
 
