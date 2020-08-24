@@ -59,15 +59,20 @@ public class SolveUpdateServlet extends HttpServlet {
             try {
                 tt = LocalTime.parse(request.getParameter("targettime"),DateTimeFormatter.ofPattern("HH:mm:ss"));
                 s2.setTargettime(tt);
+
             } catch (DateTimeParseException e) {
                 //目標解答時間について、特に変更なしの時
+                tt = s2.getTargettime();
              }
+
+            System.out.println("ああああああああああああ"+tt);
 
             try {
                 st = LocalTime.parse(request.getParameter("solvetime"),DateTimeFormatter.ofPattern("HH:mm:ss"));
                 s2.setSolvetime(st);
             } catch (DateTimeParseException e) {
                //解答時間について、特に変更なしの時
+                st = s2.getSolvetime();
             }
 
             s2.setDay(request.getParameter("day"));

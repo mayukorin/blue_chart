@@ -41,5 +41,16 @@
     <p><a href="<c:url value="/problems/index"/>">問題一覧へ戻る</a></p>
     <p><a href="<c:url value="/problems/show"/>">問題詳細へ戻る</a></p>
     <p><a href="<c:url value="/solves/edit?solve=${solve.id}"/>">解答情報を編集する</a></p>
+    <p><a href="#" onclick="confirmDestroy();">この解答情報を削除する</a></p>
+                    <form method="POST" action="<c:url value='/solves/destroy?id=${solve.id}'/>">
+                    <input type="hidden" name="_token" value="${_token}" />
+                    </form>
+                    <script>
+                    function confirmDestroy() {
+                        if (confirm("本当に削除してよろしいてすか？")) {
+                            document.forms[0].submit();
+                        }
+                    }
+                    </script>
 </c:param>
 </c:import>
