@@ -40,10 +40,10 @@ public class TopPageIndexServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
-        Map<Problem,String> latestp = new HashMap<Problem,String>();//問題と、その問題を最後に解いた日
+        Map<Problem,Solve2> latestp = new HashMap<Problem,Solve2>();//問題と、その問題を最後に解いた日
         String str = "";
         Date today = new Date();
-        Map<Problem,String> notp = new HashMap<Problem,String>();//問題と、その問題を最後に解いた日
+        Map<Problem,Solve2> notp = new HashMap<Problem,Solve2>();//問題と、その問題を最後に解いた日
 
         EntityManager em = DBUtil.createEntityManager();
 
@@ -62,13 +62,13 @@ public class TopPageIndexServlet extends HttpServlet {
                 if (day_diff<=8) {
                     //一週間以内にやった問題
                     str = new SimpleDateFormat("yyyy-MM-dd").format(day);
-                    latestp.put(p,str);
+                    latestp.put(p,s2.get(s2.size()-1));
 
 
                 } else if (day_diff >=30) {
                     //一ヶ月くらいやっていない問題
                     str = new SimpleDateFormat("yyyy-MM-dd").format(day);
-                    notp.put(p,str);
+                    notp.put(p,s2.get(s2.size()-1));
 
                 }
 

@@ -24,10 +24,10 @@ import javax.persistence.Table;
     @NamedQuery(
             name="problemcount",
             query = "select count(s) from Solve2 as s where s.problem = :problem and s.person = :person"),
+
     @NamedQuery(
-            name="solveproblem",
-            query = "select s from Solve2 as s where s.problem = :problem and s.person = :person order by s.date "
-            ),
+            name="solveproblem_desc",
+            query =  "select s from Solve2 as s where s.problem = :problem and s.person = :person order by s.date desc " )
 
 
 })

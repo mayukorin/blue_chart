@@ -2,8 +2,8 @@ package controllers.problems;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 import javax.persistence.EntityManager;
 import javax.servlet.RequestDispatcher;
@@ -68,7 +68,7 @@ public class ProblemShowServlet extends HttpServlet {
 
 
         }
-        List<Solve2> solves = em.createNamedQuery("solveproblem",Solve2.class).setParameter("problem", p).setParameter("person", pp).getResultList();//その問題を、ログインした人が解いた情報
+        List<Solve2> solves = em.createNamedQuery("solveproblem_desc",Solve2.class).setParameter("problem", p).setParameter("person", pp).getResultList();//その問題を、ログインした人が解いた情報
 
 
         List<Integer> tt = new ArrayList<Integer>();//目標時間
@@ -77,10 +77,10 @@ public class ProblemShowServlet extends HttpServlet {
 
 
 
-        Iterator<Solve2> it = solves.iterator();
-        while (it.hasNext()) {
+        ListIterator<Solve2> it = solves.listIterator(solves.size());
+        while (it.hasPrevious()) {
 
-            Solve2 s = it.next();
+            Solve2 s = it.previous();
             if (s.getSolvetime() != null) {
                 Integer t_time = s.getTargettime().getHour()*1440+s.getTargettime().getMinute()*60+s.getTargettime().getSecond();
                 Integer s_time = s.getSolvetime().getHour()*1440+s.getSolvetime().getMinute()*60+s.getSolvetime().getSecond();

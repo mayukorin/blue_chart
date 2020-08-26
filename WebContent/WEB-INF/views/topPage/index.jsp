@@ -17,28 +17,50 @@
                 <th>一番最後に解いた日</th>
             </tr>
             <c:forEach var="entry" items="${latestp}">
-                <tr>
+                <c:choose>
+                <c:when test="${entry.value.rate <=  1}">
+                <tr class="blue">
                     <td><p><a href="<c:url value="/problems/show?problem=${entry.key.id}"/>"><c:out value="${entry.key.name}"/></a></td>
                     <td><c:out value="${entry.key.page}"/></td>
-                    <td><c:out value="${entry.value}"/></td>
+                    <td><c:out value="${entry.value.day}"/></td>
                 </tr>
+                </c:when>
+                <c:otherwise>
+                 <tr class="red">
+                    <td><p><a href="<c:url value="/problems/show?problem=${entry.key.id}"/>"><c:out value="${entry.key.name}"/></a></td>
+                    <td><c:out value="${entry.key.page}"/></td>
+                    <td><c:out value="${entry.value.day}"/></td>
+                </tr>
+                </c:otherwise>
+                </c:choose>
             </c:forEach>
 
         </table>
         <br/>
         <table>
-            <caption>1ヶ月以上解いていない問題</caption>
+            <caption>1ヶ月以上学習していない問題</caption>
             <tr>
                 <th>問題</th>
                 <th>ページ数</th>
                 <th>一番最後に解いた日</th>
             </tr>
             <c:forEach var="entry" items="${notp}">
-                <tr>
+                <c:choose>
+                <c:when test="${entry.value.rate <=  1}">
+                <tr class="blue">
                     <td><p><a href="<c:url value="/problems/show?problem=${entry.key.id}"/>"><c:out value="${entry.key.name}"/></a></td>
                     <td><c:out value="${entry.key.page}"/></td>
-                    <td><c:out value="${entry.value}"/></td>
+                    <td><c:out value="${entry.value.day}"/></td>
                 </tr>
+                </c:when>
+                <c:otherwise>
+                <tr class="red">
+                    <td><p><a href="<c:url value="/problems/show?problem=${entry.key.id}"/>"><c:out value="${entry.key.name}"/></a></td>
+                    <td><c:out value="${entry.key.page}"/></td>
+                    <td><c:out value="${entry.value.day}"/></td>
+                </tr>
+                </c:otherwise>
+                </c:choose>
             </c:forEach>
 
         </table>
