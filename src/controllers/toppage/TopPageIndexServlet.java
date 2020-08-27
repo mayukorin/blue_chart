@@ -70,7 +70,7 @@ public class TopPageIndexServlet extends HttpServlet {
                 }
 
 
-            } else if (day_diff >=30) {
+            } else if (day_diff >=30 && latestp.get(s2.getProblem()) == null) {
                 //一ヶ月くらいやっていない問題
 
                 if (notp.get(s2.getProblem()) == null) {
