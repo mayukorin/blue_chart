@@ -16,7 +16,8 @@ import javax.persistence.Table;
             query = "select p from Problem as p where p.area = :area order by p.id"),
     @NamedQuery(
             name = "getAllProblems",
-            query = "select p from Problem as p")
+            query = "select p from Problem as p"),
+
 })
 @Entity
 public class Problem {

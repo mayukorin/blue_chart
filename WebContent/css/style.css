@@ -147,3 +147,11 @@ td.red{
     background-color: #FFD5EC;
 
 }
+
+div.minute{
+    float:left;
+}
+
+div.second{
+    float:left;
+}

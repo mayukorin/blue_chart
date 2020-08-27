@@ -19,13 +19,29 @@
 <input type="date" name="day" value="${solve.day}"/>
 <br/><br/>
 
-<label for="targettime">目標時間</label><br/>
-<input type="time" step="1" name="targettime" value="${solve.targettime}"/>
-<br/><br/>
+<p>目標時間</p>
+<div class="minute">
+<label for="target_minute">分</label><br/>
+<input type="number"  min="0" name="target_minute" value="${solve.target_minute }"/>
+</div>
 
-<label for="solvetime">解答時間</label><br/>
-<input type="time" step="1" name="solvetime" value="${solve.solvetime}"/>
-<br/><br/>
+<div class="second">
+<label for="target_second">秒</label><br/>
+<input type="number" min="0" max="60" name="target_second" value="${solve.target_second }"/>
+</div>
+<br/><br/><br/>
+<p>解答時間</p>
+<div class="minute">
+<label for="minute">分</label><br/>
+<input type="number"  min="0" name="minute" value="${solve.solve_minute }"/>
+</div>
+
+<div class="second">
+<label for="second">秒</label><br/>
+<input type="number" min="0" max="59" name="second" value="${solve.solve_second }"/>
+</div>
+<br/><br/><br/>
+
 
 <label for="content">コメント</label><br/>
 <textarea name="content" rows="10" cols="50">${solve.content}</textarea>

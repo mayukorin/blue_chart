@@ -2,8 +2,6 @@ package controllers.solves;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 
@@ -41,8 +39,6 @@ public class SolvesCreateServlet extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // TODO Auto-generated method stub
-        LocalTime tt = null;
-        LocalTime st = null;
 
         String _token = (String) request.getParameter("_token");
         if (_token != null && _token.equals(request.getSession().getId())) {
@@ -56,16 +52,25 @@ public class SolvesCreateServlet extends HttpServlet {
             Problem pp = (Problem) request.getSession().getAttribute("problem");
             s2.setProblem(pp);
 
-            if (!request.getParameter("targettime").equals("")) {
-                tt = LocalTime.parse(request.getParameter("targettime"),DateTimeFormatter.ofPattern("HH:mm:ss"));
-                s2.setTargettime(tt);
+            //目標時間の分を入れる
+            if (request.getParameter("target_minute") != null && !request.getParameter("target_minute").equals("")) {
+                s2.setTarget_minute(Integer.parseInt(request.getParameter("target_minute")));
             }
 
-            if (!request.getParameter("solvetime").equals("")) {
-                st = LocalTime.parse(request.getParameter("solvetime"),DateTimeFormatter.ofPattern("HH:mm:ss"));
-                s2.setSolvetime(st);
+          //目標時間の秒を入れる
+            if (request.getParameter("target_second") != null && !request.getParameter("target_second").equals("")) {
+                s2.setTarget_second(Integer.parseInt(request.getParameter("target_second")));
             }
 
+            //解答時間の分を入れる
+            if (request.getParameter("minute") != null && !request.getParameter("minute").equals("")) {
+                s2.setSolve_minute(Integer.parseInt(request.getParameter("minute")));
+            }
+
+          //解答時間の秒を入れる
+            if (request.getParameter("second") != null && !request.getParameter("second").equals("")) {
+                s2.setSolve_second(Integer.parseInt(request.getParameter("second")));
+            }
 
 
 
@@ -73,15 +78,7 @@ public class SolvesCreateServlet extends HttpServlet {
 
             s2.setContent(request.getParameter("content"));
 
-            ///目標時間と解答時間のどちらか小さいか
-            if (s2.getSolvetime() != null) {
-                if (st.isBefore(tt)) {
-                    //実際の時時間の方が、目標時間より速い場合
-                    s2.setRate(0.5);
-                } else {
-                    s2.setRate(1.5);
-                }
-            }
+
 
 
             List<String> errors = SolveValidator.validate(s2);
@@ -96,6 +93,17 @@ public class SolvesCreateServlet extends HttpServlet {
                 RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/solves/new.jsp");
                 rd.forward(request, response);
             } else {
+              ///目標時間と解答時間のどちらか小さいか
+                if (s2.getSolve_minute() != null && s2.getSolve_second() != null) {
+                    Integer solve = 60*s2.getSolve_minute()+s2.getSolve_second();
+                    Integer target = 60*s2.getTarget_minute()+s2.getTarget_second();
+                    if (solve < target) {
+                        //実際の時時間の方が、目標時間より速い場合
+                        s2.setRate(0.5);
+                    } else {
+                        s2.setRate(1.5);
+                    }
+                }
 
                 try {
                     SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd");

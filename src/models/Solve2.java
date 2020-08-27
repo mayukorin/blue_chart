@@ -1,6 +1,5 @@
 package models;
 
-import java.time.LocalTime;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -27,7 +26,14 @@ import javax.persistence.Table;
 
     @NamedQuery(
             name="solveproblem_desc",
-            query =  "select s from Solve2 as s where s.problem = :problem and s.person = :person order by s.date desc " )
+            query =  "select s from Solve2 as s where s.problem = :problem and s.person = :person order by s.date desc " ),
+    @NamedQuery(
+            name="solveproblem",
+            query =  "select s from Solve2 as s where s.problem = :problem and s.person = :person order by s.date " ),
+    @NamedQuery(
+            name="solves",
+            query = "select s from Solve2 as s where s.person = :person"),
+
 
 
 })
@@ -48,8 +54,11 @@ public class Solve2 {
     @JoinColumn(name = "problem")
     Problem problem;
 
-    @Column(name="targettime",nullable = false)
-    LocalTime targettime;
+    @Column(name="target_minute")
+    private Integer target_minute;
+
+    @Column(name="target_second")
+    private Integer target_second;
 
     @Column(name="day",nullable=false)
     private String day;
@@ -57,8 +66,11 @@ public class Solve2 {
     @Column(name="date",nullable=false)
     private Date date;
 
-    @Column(name="solvetime")
-    private LocalTime solvetime;
+    @Column(name="solve_minute")
+    private Integer solve_minute;
+
+    @Column(name="solve_second")
+    private Integer solve_second;
 
     @Column(name = "rate")
     private Double rate;
@@ -91,23 +103,7 @@ public class Solve2 {
         this.problem = problem;
     }
 
-    public LocalTime getTargettime() {
-        return targettime;
-    }
 
-    public void setTargettime(LocalTime targettime) {
-        this.targettime = targettime;
-    }
-
-
-
-    public LocalTime getSolvetime() {
-        return solvetime;
-    }
-
-    public void setSolvetime(LocalTime solvetime) {
-        this.solvetime = solvetime;
-    }
 
     public Double getRate() {
         return rate;
@@ -139,6 +135,38 @@ public class Solve2 {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public Integer getTarget_minute() {
+        return target_minute;
+    }
+
+    public void setTarget_minute(Integer target_minute) {
+        this.target_minute = target_minute;
+    }
+
+    public Integer getTarget_second() {
+        return target_second;
+    }
+
+    public void setTarget_second(Integer target_second) {
+        this.target_second = target_second;
+    }
+
+    public Integer getSolve_minute() {
+        return solve_minute;
+    }
+
+    public void setSolve_minute(Integer solve_minute) {
+        this.solve_minute = solve_minute;
+    }
+
+    public Integer getSolve_second() {
+        return solve_second;
+    }
+
+    public void setSolve_second(Integer solve_second) {
+        this.solve_second = solve_second;
     }
 
 

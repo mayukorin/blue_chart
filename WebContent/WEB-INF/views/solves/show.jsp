@@ -17,12 +17,12 @@
                     <td><c:out value="${solve.day}"/></td>
                 </tr>
                 <tr>
-                    <th>目標時間</th>
-                    <td><c:out value="${solve.targettime}"/></td>
+                    <th>目標時間（分：秒）</th>
+                    <td>${solve.target_minute}:${solve.target_second}</td>
                 </tr>
                 <tr>
-                    <th>実際の時間</th>
-                    <td><c:out value="${solve.solvetime}"/></td>
+                    <th>実際の時間（分：秒）</th>
+                   <td>${solve.solve_minute}:${solve.solve_second}</td>
                 </tr>
                 <tr>
                     <th>コメント</th>

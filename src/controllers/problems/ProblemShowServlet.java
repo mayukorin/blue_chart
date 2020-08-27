@@ -81,10 +81,9 @@ public class ProblemShowServlet extends HttpServlet {
         while (it.hasPrevious()) {
 
             Solve2 s = it.previous();
-            if (s.getSolvetime() != null) {
-                Integer t_time = s.getTargettime().getHour()*1440+s.getTargettime().getMinute()*60+s.getTargettime().getSecond();
-                Integer s_time = s.getSolvetime().getHour()*1440+s.getSolvetime().getMinute()*60+s.getSolvetime().getSecond();
-
+            if (s.getSolve_minute() != null && s.getSolve_second() != null) {
+                Integer t_time = s.getTarget_minute()*60+s.getTarget_second();
+                Integer s_time = s.getSolve_minute()*60+s.getSolve_second();
                 tt.add(t_time);
                 ts.add(s_time);
                 day.add(s.getDay());

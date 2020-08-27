@@ -37,8 +37,8 @@
                     <tbody>
                         <tr>
                             <th>日付</th>
-                            <th>目標時間</th>
-                            <th>解答時間</th>
+                            <th>目標時間（分：秒）</th>
+                            <th>解答時間（分：秒）</th>
                         </tr>
                         <c:forEach var="solve" items="${solves}">
                             <c:choose>
@@ -47,8 +47,8 @@
                                         <td><a
                                             href="<c:url value="/solves/show?solve=${solve.id}"/>"><c:out
                                                     value="${solve.day}" /></a></td>
-                                        <td><c:out value="${solve.targettime}" /></td>
-                                        <td><c:out value="${solve.solvetime}" /></td>
+                                        <td>${solve.target_minute}:${solve.target_second}</td>
+                                        <td>${solve.solve_minute}:${solve.solve_second}</td>
                                     </tr>
                                 </c:when>
                                 <c:otherwise>
@@ -56,8 +56,8 @@
                                         <td><a
                                             href="<c:url value="/solves/show?solve=${solve.id}"/>"><c:out
                                                     value="${solve.day}" /></a></td>
-                                        <td><c:out value="${solve.targettime}" /></td>
-                                        <td><c:out value="${solve.solvetime}" /></td>
+                                        <td>${solve.target_minute}:${solve.target_second}</td>
+                                        <td>${solve.solve_minute}:${solve.solve_second}</td>
                                     </tr>
                                 </c:otherwise>
                             </c:choose>
