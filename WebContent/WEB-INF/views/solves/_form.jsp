@@ -15,7 +15,7 @@
 <br/><br/>
 
 
-<label for="day"> 日付</label><br/>
+<label for="day"> 日付（カレンダーが表示されない場合は、2020-08-01のように入力してください）</label><br/>
 <input type="date" name="day" value="${solve.day}"/>
 <br/><br/>
 

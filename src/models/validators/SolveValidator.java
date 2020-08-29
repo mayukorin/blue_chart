@@ -1,6 +1,8 @@
 package models.validators;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import models.Solve2;
@@ -31,10 +33,19 @@ public class SolveValidator {
     }
 
     private static String _validateDate(String date) {
-        if (date == null || date.equals("")) {
-            return "解いた（解く予定の）日付を入力してください";
 
+        try {
+            if (date.equals("") | date == null) {
+                return "解いた（特予定の）日付を入力してください";
+            }
+            SimpleDateFormat sdFormat = new SimpleDateFormat("yyyy-MM-dd");
+            Date da =  sdFormat.parse(date);
+
+        } catch (java.text.ParseException e) {
+
+            return "解いた（解く予定の）日付をyyyy-mm-ddの形で入力してください";
         }
+
         return "";
     }
 

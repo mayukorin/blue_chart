@@ -86,14 +86,16 @@ CREATE TABLE `Solves2` (
   `date` datetime NOT NULL,
   `day` varchar(255) NOT NULL,
   `rate` double DEFAULT NULL,
-  `solvetime` time DEFAULT NULL,
-  `targettime` time NOT NULL,
+  `solve_minute` int(11) DEFAULT NULL,
+  `solve_second` int(11) DEFAULT NULL,
+  `target_minute` int(11) DEFAULT NULL,
+  `target_second` int(11) DEFAULT NULL,
   `person` int(11) DEFAULT NULL,
   `problem` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FK50bdpwskjthdwaiiqei3hht7l` (`person`),
   KEY `FKj426ht7n6i8djq2ouyfjg9cwv` (`problem`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -102,7 +104,7 @@ CREATE TABLE `Solves2` (
 
 LOCK TABLES `Solves2` WRITE;
 /*!40000 ALTER TABLE `Solves2` DISABLE KEYS */;
-INSERT INTO `Solves2` VALUES (1,'','2020-08-06 00:00:00','2020-08-06',0.5,'00:05:20','00:07:56',2,1),(2,'','2020-08-02 00:00:00','2020-08-02',1.5,'00:11:29','00:08:30',2,1),(3,'','2020-08-18 00:00:00','2020-08-18',1.5,'00:05:30','00:04:00',3,111),(5,'','2020-08-20 00:00:00','2020-08-20',0.5,'00:02:40','00:03:00',3,111),(7,'','2020-08-12 00:00:00','2020-08-12',0.5,'00:03:45','00:04:40',3,116);
+INSERT INTO `Solves2` VALUES (2,'','2020-08-25 00:00:00','2020-08-25',0.5,2,50,3,0,3,111),(3,'','2020-06-17 00:00:00','2020-06-17',0.5,4,0,5,50,3,111);
 /*!40000 ALTER TABLE `Solves2` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -139,4 +141,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-08-26 11:35:02
+-- Dump completed on 2020-08-27 12:51:04
