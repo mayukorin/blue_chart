@@ -33,6 +33,9 @@ import javax.persistence.Table;
     @NamedQuery(
             name="solves",
             query = "select s from Solve2 as s where s.person = :person"),
+    @NamedQuery(
+            name="person_problem",
+            query = "select distinct p from Problem as p, Solve2 as s where s.person = :person and p = s.problem ")
 
 
 

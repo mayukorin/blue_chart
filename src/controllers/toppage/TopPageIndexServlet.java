@@ -46,44 +46,20 @@ public class TopPageIndexServlet extends HttpServlet {
         EntityManager em = DBUtil.createEntityManager();
 
         Person pp = ((Person)request.getSession().getAttribute("login_person"));
+        List<Problem> ps = em.createNamedQuery("person_problem",Problem.class).setParameter("person", pp).getResultList();//その人が解いている問題
+        for (int i= 0;i<ps.size();i++) {
+            Problem p = ps.get(i);
+            System.out.println(ps.get(i).getName());
+            List<Solve2> s2 = em.createNamedQuery("solveproblem_desc",Solve2.class).setParameter("person",pp).setParameter("problem",p).getResultList();
 
+            Solve2 s = s2.get(0);//一番最近といたヤツ
+            Date day = s.getDate();
+            long day_diff = (today.getTime()-day.getTime())/(1000 * 60 * 60 * 24 );//今日との差
 
-        List<Solve2> s2s = em.createNamedQuery("solves",Solve2.class).setParameter("person", pp).getResultList();
-        for (int i = 0;i<s2s.size();i++) {
-            Solve2 s2 = s2s.get(i);
-
-            Date day = s2.getDate();
-            long day_diff = (today.getTime()-day.getTime())/(1000 * 60 * 60 * 24 );
-
-            if (day_diff<=8) {
-                //一週間以内にやった問題
-
-                if (latestp.get(s2.getProblem()) == null) {
-                    latestp.put(s2.getProblem(),s2);
-                } else {
-                    //すでに、その問題が登録されている時
-                    if ((latestp.get(s2.getProblem()).getDate()).before(s2.getDate())) {
-                        //登録されてた日付よりs2.getDateの方が後の場合
-                        latestp.replace(s2.getProblem(),s2);
-
-                    }
-                }
-
-
-            } else if (day_diff >=30 && latestp.get(s2.getProblem()) == null) {
-                //一ヶ月くらいやっていない問題
-
-                if (notp.get(s2.getProblem()) == null) {
-                    notp.put(s2.getProblem(),s2);
-                } else {
-                    //すでに、その問題が登録されている時
-                    if ((notp.get(s2.getProblem()).getDate()).after(s2.getDate())) {
-                        //登録されてた日付より、s2.getDateの方が前の場合
-                        latestp.replace(s2.getProblem(),s2);
-
-                    }
-                }
-
+            if (day_diff <= 8) {//最近といたヤツ
+                latestp.put(s.getProblem(),s);
+            } else if (day_diff >= 30) {
+                notp.put(s.getProblem(),s);
             }
 
         }
